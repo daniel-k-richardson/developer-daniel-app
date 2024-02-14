@@ -1,0 +1,8 @@
+
+input {
+    box-sizing: border-box;
+    padding: .6rem;
+    border: .1rem solid #1DA1F2;
+    margin: .1rem;
+    border-radius: 5px;
+}

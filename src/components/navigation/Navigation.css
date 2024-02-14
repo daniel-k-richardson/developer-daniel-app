@@ -1,0 +1,35 @@
+
+
+/* menu base styles */
+.nav-container {
+    background-color: #1DA1F2;
+    border: 2px solid #1DA1F2;
+    padding: 10px;
+    border-radius: 4px;
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%); */
+}
+
+.nav-container .nav-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: bisque;
+    display: block;
+    padding: 1em;
+    font-size: large;
+}
+
+.nav-container a:hover {
+    color: #AAB8C2;
+}
+
+/* flex styles */
+@media screen and (min-width: 768px) {
+    .nav-container .nav-list {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
