@@ -7,11 +7,11 @@ export default function Login()
     const [loginCredentials, setloginCredentials] = useState({});
 
     function handleChange(event) {
-        setloginCredentials(s => ({...loginCredentials, email: event.target.value }))
+        setloginCredentials(s => ({...s, email: event.target.value }))
     }
 
     function handleChange1(event) {
-        setloginData(s => ({...loginCredentials, password: event.target.value }))
+        setloginCredentials(s => ({...s, password: event.target.value }))
     }
 
     const handleLogin = async (event) => {

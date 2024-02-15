@@ -1,5 +1,9 @@
 const get = async (route) => {
-    const result = await fetch(`https://developerdaniel.azurewebsites.net/${route}`, {
+
+    console.log(route)
+    var route2 = import.meta.env.VITE_BACKEND_API + route
+    console.log(route2)
+    const result = await fetch(route2, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -12,15 +16,14 @@ const get = async (route) => {
 
 const post = async (route, content) => {
     console.log('router', route)
-    const result = await fetch(`https://developerdaniel.azurewebsites.net/${route}`, {
+    const result = await fetch(`${import.meta.env.VITE_BACKEND_API}${route}`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({content})
+        body: JSON.stringify({...content})
     });
-
 
     return await result.json();
 }
