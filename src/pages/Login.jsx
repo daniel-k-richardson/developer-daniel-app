@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Input from '../components/input/Input'
 import AuthService from '../services/AuthService'
 import { UserContext } from '../App'
@@ -6,6 +7,7 @@ import { UserContext } from '../App'
 export default function Login () {
   const [loginCredentials, setloginCredentials] = useState({})
   const [, setIsLoggedIn] = useContext(UserContext)
+  const navigate = useNavigate()
 
   function handleChange (event) {
     setloginCredentials(s => ({ ...s, email: event.target.value }))
@@ -20,6 +22,7 @@ export default function Login () {
     try {
       await AuthService.login(loginCredentials)
       setIsLoggedIn(true)
+      navigate('/')
     } catch (error) {
       setIsLoggedIn(false)
     }
