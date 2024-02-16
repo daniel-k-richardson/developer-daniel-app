@@ -1,7 +1,7 @@
-import httpClient from './httpClient'
+import HttpClient from './HttpClient'
 
 const getBlogs = async () => {
-  const result = await httpClient.get('api/blogs')
+  const result = await HttpClient.get('api/blogs')
   return await result.json()
 }
 

@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Input from '../components/input/Input'
-import loginService from '../services/LoginService'
+import AuthService from '../services/AuthService'
+import { UserContext } from '../App'
 
 export default function Login () {
   const [loginCredentials, setloginCredentials] = useState({})
+  const [, setIsLoggedIn] = useContext(UserContext)
 
   function handleChange (event) {
     setloginCredentials(s => ({ ...s, email: event.target.value }))
@@ -16,16 +18,14 @@ export default function Login () {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      console.log('indata', loginCredentials)
-      const result = await loginService.login(loginCredentials)
-      console.log('worked', result)
+      await AuthService.login(loginCredentials)
+      setIsLoggedIn(true)
     } catch (error) {
-      console.log('failed asdfa', error)
+      setIsLoggedIn(false)
     }
   }
 
-  return (
-  <>
+  return (<>
         <h1>This is a login page</h1>
         <form onSubmit={handleLogin}>
             <Input type="text" placeholder="Email" onChange={handleChange} />

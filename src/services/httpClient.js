@@ -1,3 +1,5 @@
+import AuthHeader from './AuthHeader'
+
 const get = async (route) => {
   const result = await fetch(import.meta.env.VITE_BACKEND_API + route, {
     method: 'GET',
@@ -24,7 +26,19 @@ const post = async (route, content) => {
   return await result.json()
 }
 
+const postWithAuth = async (route, content) => {
+  console.log('router', route)
+  const result = await fetch(import.meta.env.VITE_BACKEND_API + route, {
+    method: 'POST',
+    headers: AuthHeader.authHeader(),
+    body: JSON.stringify({ ...content })
+  })
+
+  return await result.json()
+}
+
 export default {
   get,
-  post
+  post,
+  postWithAuth
 }
