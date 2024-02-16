@@ -1,5 +1,4 @@
-
-import {Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import './App.css'
 import Home from './pages/Home.jsx'
@@ -8,8 +7,7 @@ import Blog from './pages/Blog.jsx'
 import Login from './pages/Login.jsx'
 import Navigation from './components/navigation/Navigation.jsx'
 
-function App() {
-
+function App () {
   return (
     <>
       <div className='wrapper'>
