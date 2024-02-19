@@ -1,15 +1,6 @@
-
-
 .home-container {
     min-height: 80%;
     align-content: center;
-}
-
-/* menu base styles */
-.home-container h1 {
-    padding: 1rem;
-    font-size: 3rem;
-    color: #1DA1F2;
 }
 
 .home-container p {

@@ -1,37 +1,39 @@
 import { useState, useEffect } from 'react'
 import BlogService from '../services/BlogService'
+import blogStyle from './blog.module.css'
 
 export default function Blog () {
   const [posts, setPosts] = useState([])
-  const [isPending, setIsPending] = useState(false)
+
+  const blogs = [
+    { id: 1, title: 'first ever blog', content: 'this is my content' },
+    { id: 2, title: 'second ever blog', content: 'this is more content here ☕' }
+  ]
 
   useEffect(() => {
     initBlogs()
   }, [])
 
   const initBlogs = async () => {
-    setIsPending(i => (i = true))
-
     try {
       const result = await BlogService.getBlogs()
       setPosts(p => (p = result))
     } catch (error) {
       console.log(error)
-      setIsPending(i => (i = false))
     }
-
-    setIsPending(i => (i = false))
   }
 
   return (<>
-        <h1>Blog</h1>
-        <p>my blogs go here</p>
-        <div>
-            { isPending && <div>Loading ..</div>}
-            { posts.map((post) => (
-                <p key={post.id}>{post.title} - {post.content}</p>
-            ))}
-        </div>
-
-    </>)
+            <h1 className={blogStyle.header}>Blog</h1>
+            <p className={blogStyle.contentText}>my blogs go here</p>
+              { blogs.map((post) => (
+                <div className={blogStyle.blogCard} key={post.id}>
+                  <h1 className={blogStyle.blogTitle}>{post.title}</h1>
+                  <p className={blogStyle.content}>{post.content}</p>
+                  <div className={blogStyle.blogFooter}>
+                    <p>footer scontent</p>
+                  </div>
+                </div>
+              ))}
+          </>)
 }

@@ -28,14 +28,16 @@ function App () {
       <div className='wrapper'>
         <UserContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
           <Navigation />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='about' element={<About />} />
-            <Route path='blogs' element={<Blog />} />
-            <Route path='login' element={<Login />} />
-          </Routes>
+          <div className='content-wrapper'>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='about' element={<About />} />
+              <Route path='blogs' element={<Blog />} />
+              <Route path='login' element={<Login />} />
+            </Routes>
+          </div>
         </UserContext.Provider>
-        </div>
+      </div>
     </>
   )
 }
