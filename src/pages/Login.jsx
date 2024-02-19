@@ -9,13 +9,11 @@ export default function Login () {
   const [, setIsLoggedIn] = useContext(UserContext)
   const navigate = useNavigate()
 
-  function handleChange (event) {
+  const handleChange = (event) =>
     setloginCredentials(s => ({ ...s, email: event.target.value }))
-  }
 
-  function handleChange1 (event) {
+  const handleChange1 = (event) =>
     setloginCredentials(s => ({ ...s, password: event.target.value }))
-  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
