@@ -1,0 +1,8 @@
+.headerFlexWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.headerFlexWrapper .center {
+  margin-left: auto;
+}

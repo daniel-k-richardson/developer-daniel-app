@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Input from '../components/input/Input'
-import AuthService from '../services/AuthService'
-import { UserContext } from '../App'
+import Input from '../../common/input/Input'
+import AuthService from '../../services/AuthService'
+import { UserContext } from '../../App'
 
 export default function Login () {
   const [loginCredentials, setloginCredentials] = useState({})
@@ -10,10 +10,7 @@ export default function Login () {
   const navigate = useNavigate()
 
   const handleChange = (event) =>
-    setloginCredentials(s => ({ ...s, email: event.target.value }))
-
-  const handleChange1 = (event) =>
-    setloginCredentials(s => ({ ...s, password: event.target.value }))
+    setloginCredentials(s => ({ ...s, [event.target.name]: event.target.value }))
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -29,9 +26,17 @@ export default function Login () {
   return (<>
         <h1>This is a login page</h1>
         <form onSubmit={handleLogin}>
-            <Input type="text" placeholder="Email" onChange={handleChange} />
-            <Input type="password" placeholder="current-password" onChange={handleChange1} />
-            <input type="submit" />
+            <Input
+              type='text'
+              placeholder='Email'
+              name='email'
+              onChange={handleChange} />
+            <Input
+              type='password'
+              placeholder='current-password'
+              name='password'
+              onChange={handleChange} />
+            <input type='submit' />
         </form>
     </>)
 }

@@ -2,11 +2,14 @@
 
 /* menu base styles */
 .nav-container {
-    background-color: #1DA1F2;
-    border: 2px solid #1DA1F2;
+    display: flex;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     padding: 10px;
     border-radius: 4px;
-    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%); */
+    align-self: center;
 }
 
 .nav-container .nav-list {
@@ -16,20 +19,26 @@
 
 .nav-container a {
     text-decoration: none;
-    color: bisque;
+    color: #657786;
     display: block;
     padding: 1em;
     font-size: large;
+    font-weight: bold;
 }
 
 .nav-container a:hover {
-    color: #AAB8C2;
+    color: black;
+}
+
+.nav-container a.active {
+    color: black;
+    font-weight: bolder;
 }
 
 /* flex styles */
 @media screen and (min-width: 768px) {
     .nav-container .nav-list {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
 }
