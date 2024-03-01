@@ -1,5 +1,5 @@
-import HttpClient from './HttpClient'
-import TokenService from './TokenService'
+import HttpClient from './HttpClient.js'
+import TokenService from './TokenService.js'
 
 const login = async ({ email, password }) => {
   const result = await HttpClient.post('login', { email, password })
