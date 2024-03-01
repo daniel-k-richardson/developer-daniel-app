@@ -4,6 +4,8 @@ import Input from '../../common/input/Input'
 import AuthService from '../../services/AuthService'
 import { UserContext } from '../../App'
 
+import './login.css'
+
 export default function Login () {
   const [loginCredentials, setloginCredentials] = useState({})
   const [, setIsLoggedIn] = useContext(UserContext)
@@ -24,8 +26,8 @@ export default function Login () {
   }
 
   return (<>
-        <h1>This is a login page</h1>
-        <form onSubmit={handleLogin}>
+        <h2>Sign in</h2>
+        <form className='login-form' onSubmit={handleLogin}>
             <Input
               type='text'
               placeholder='Email'
@@ -33,10 +35,10 @@ export default function Login () {
               onChange={handleChange} />
             <Input
               type='password'
-              placeholder='current-password'
+              placeholder='Password'
               name='password'
               onChange={handleChange} />
-            <input type='submit' />
+            <input type='submit' value='Login'/>
         </form>
     </>)
 }

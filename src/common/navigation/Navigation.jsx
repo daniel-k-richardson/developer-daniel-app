@@ -18,7 +18,6 @@ export default function Navigation () {
             <ul className='nav-list'>
                 <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink></li>
                 <li><NavLink to='About' >About</NavLink></li>
-                <li><NavLink to='https://github.com/daniel-k-richardson' target='_bank'>Resume</NavLink></li>
                 <li><NavLink to='Blogs' >Blog</NavLink></li>
                 { isLoggedIn ? (<li><NavLink onClick={handleLogout}>Logout</NavLink></li>) : null}
             </ul>
