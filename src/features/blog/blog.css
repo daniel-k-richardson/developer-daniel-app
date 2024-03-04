@@ -37,3 +37,10 @@
     color: #F5F5F5;
     font-size: larger;
 }
+
+input[type=search] {
+    width: 50ch;
+    padding: 1rem;
+    margin-bottom: 15rem;
+    border-color: black;
+}
