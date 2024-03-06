@@ -1,4 +1,4 @@
-import AuthHeader from './AuthHeader'
+import AuthHeader from './AuthHeader.js'
 
 const get = async (route) => {
   const result = await fetch(import.meta.env.VITE_BACKEND_API + route, {
