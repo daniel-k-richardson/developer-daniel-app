@@ -1,4 +1,4 @@
-import TokenService from './TokenService'
+import TokenService from './TokenService.js'
 
 const authHeader = () => {
   const user = TokenService.getUser()
