@@ -1,12 +1,12 @@
-import HttpClient from './HttpClient.js'
+// import HttpClient from './HttpClient.js'
 import TokenService from './TokenService.js'
 
 const login = async ({ email, password }) => {
-  const result = await HttpClient.post('login', { email, password })
-  if (result.accessToken) {
-    TokenService.setUser(result)
-  }
-  return result
+  // const result = await HttpClient.post('login', { email, password })
+  // if (result.accessToken) {
+  //   TokenService.setUser(result)
+  // }
+  // return result
 }
 
 const logout = () => {
