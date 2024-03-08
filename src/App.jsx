@@ -1,32 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
-import { createContext, useState, useEffect } from 'react'
-import AuthService from './services/AuthService.js'
-
+import { AuthContextProvider } from './contexts/authContext/AuthContext'
 import './App.css'
-import Home from './features/home/Home.jsx'
-import About from './features/about/About.jsx'
-import Blog from './features/blog/Blog.jsx'
-import Login from './features/login/Login.jsx'
-import Header from './common/header/Header.jsx'
-
-export const UserContext = createContext()
+import Home from './features/home/Home'
+import About from './features/about/About'
+import Blog from './features/blog/Blog'
+import Login from './features/login/Login'
+import Header from './common/header/Header'
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useState()
-
-  useEffect(() => {
-    const user = AuthService.getUser()
-    if (user) {
-      setIsLoggedIn(true)
-    } else {
-      setIsLoggedIn(false)
-    }
-  }, [isLoggedIn])
-
   return (
     <>
       <div className='wrapper'>
-        <UserContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
+        <AuthContextProvider>
           <div className='header'>
             <Header />
           </div>
@@ -38,7 +23,7 @@ function App () {
               <Route path='login' element={<Login />} />
             </Routes>
           </div>
-        </UserContext.Provider>
+        </AuthContextProvider>
       </div>
     </>
   )

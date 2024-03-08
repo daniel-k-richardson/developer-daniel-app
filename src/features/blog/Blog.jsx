@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext, useMemo } from 'react'
 import './blog.css'
 
-import BlogService from '../../services/BlogService'
+
 import BlogList from './BlogList.jsx'
-import { UserContext } from '../../App'
+import { UserAuth } from '../../contexts/authContext/AuthContext'
 
 export default function Blog () {
   const [posts, setPosts] = useState([])
   const [query, setQuery] = useState('')
-  const [isLoggedIn] = useContext(UserContext)
+  const [isLoggedIn] = useContext(UserAuth)
 
   const filteredItems = useMemo(() => {
     return posts.filter(item => {

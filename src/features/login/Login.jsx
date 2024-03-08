@@ -1,27 +1,26 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Input from '../../common/input/Input'
-import AuthService from '../../services/AuthService'
-import { UserContext } from '../../App'
+import { UserAuth } from '../../contexts/authContext/AuthContext'
 
 import './login.css'
 
 export default function Login () {
-  const [loginCredentials, setloginCredentials] = useState({})
-  const [, setIsLoggedIn] = useContext(UserContext)
   const navigate = useNavigate()
+  const [loginCredentials, setloginCredentials] = useState({ email: '', password: '' })
+
+  const { userLogin } = UserAuth()
 
   const handleChange = (event) =>
     setloginCredentials(s => ({ ...s, [event.target.name]: event.target.value }))
 
   const handleLogin = async (event) => {
     event.preventDefault()
+
     try {
-      await AuthService.login(loginCredentials)
-      setIsLoggedIn(true)
-      navigate('/')
-    } catch (error) {
-      setIsLoggedIn(false)
+      await userLogin(loginCredentials.email, loginCredentials.password)
+    } catch (e) {
+      console.log(e)
     }
   }
 
