@@ -9,7 +9,7 @@ export default function Login () {
   const navigate = useNavigate()
   const [loginCredentials, setloginCredentials] = useState({ email: '', password: '' })
 
-  const { userLogin } = UserAuth()
+  const { login } = UserAuth()
 
   const handleChange = (event) =>
     setloginCredentials(s => ({ ...s, [event.target.name]: event.target.value }))
@@ -18,7 +18,8 @@ export default function Login () {
     event.preventDefault()
 
     try {
-      await userLogin(loginCredentials.email, loginCredentials.password)
+      await login(loginCredentials.email, loginCredentials.password)
+      navigate('/')
     } catch (e) {
       console.log(e)
     }
