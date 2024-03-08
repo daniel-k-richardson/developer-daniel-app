@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 
-export default function BlogList ({ blogs }) {
+const BlogList = ({ items }) => {
   const handleClick = (post) => {
     console.log('Clicked on item', post)
   }
 
   return (
   <>
-      { blogs.map((post) => (
+      { items.map((post) => (
                 <div onClick={() => handleClick(post)} className='blogCard' key={post.id}>
                   <h1 className='blogTitle'>{post.title}</h1>
                   <p className='content'>{post.content.slice(0, 40) + '...'}</p>
@@ -21,5 +21,7 @@ export default function BlogList ({ blogs }) {
 }
 
 BlogList.protoTypes = {
-  blogs: PropTypes.arrayOf(PropTypes.object).isRequired
+  items: PropTypes.array.isRequired
 }
+
+export default BlogList

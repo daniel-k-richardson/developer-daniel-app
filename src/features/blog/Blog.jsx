@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { UserAuth } from '../../contexts/authContext/AuthContext'
 import './blog.css'
 
-
 import BlogList from './BlogList.jsx'
-import { UserAuth } from '../../contexts/authContext/AuthContext'
+// import { UserAuth } from '../../contexts/authContext/AuthContext'
 
 export default function Blog () {
   const [posts, setPosts] = useState([])
   const [query, setQuery] = useState('')
-  const [isLoggedIn] = useContext(UserAuth)
+  const { user } = UserAuth()
 
   const filteredItems = useMemo(() => {
     return posts.filter(item => {
@@ -36,7 +36,7 @@ export default function Blog () {
 
   return (<>
             <h1>Blog</h1>
-            { isLoggedIn ? (<button>Create new blog</button>) : null }
+            { user ? (<button>Create new blog</button>) : null }
             <input
               placeholder='Seach...'
               value={query}
@@ -44,7 +44,7 @@ export default function Blog () {
               type="search"
             />
             <div className='blogWrapper' >
-              <BlogList blogs={filteredItems} />
+              <BlogList items={filteredItems} />
             </div>
           </>)
 }
