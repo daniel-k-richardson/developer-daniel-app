@@ -20,8 +20,4 @@ const BlogList = ({ items }) => {
   )
 }
 
-BlogList.protoTypes = {
-  items: PropTypes.array.isRequired
-}
-
 export default BlogList

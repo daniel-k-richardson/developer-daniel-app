@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import { UserAuth } from '../../contexts/authContext/AuthContext'
 import './blog.css'
-
 import BlogList from './BlogList.jsx'
-// import { UserAuth } from '../../contexts/authContext/AuthContext'
+import { onSnapshot, collection } from 'firebase/firestore'
+import { database } from '../../firebase'
 
 export default function Blog () {
   const [posts, setPosts] = useState([])
@@ -17,12 +17,15 @@ export default function Blog () {
   }, [posts, query])
 
   useEffect(() => {
-    // initBlogs()
-    setPosts([
-      { id: 1, title: 'first ever blog', content: 'this is my content asdfasdfasdf' },
-      { id: 2, title: 'second ever blog', content: 'this is more content here ☕' },
-      { id: 3, title: 'thrid ever blog', content: 'this is more content here ☕' }
-    ])
+    onSnapshot(collection(database, 'default'), (snapshot) => {
+      console.log(snapshot.docs.map(d => d.data))
+    })
+    // // initBlogs()
+    // setPosts([
+    //   { id: 1, title: 'first ever blog', content: 'this is my content asdfasdfasdf' },
+    //   { id: 2, title: 'second ever blog', content: 'this is more content here ☕' },
+    //   { id: 3, title: 'thrid ever blog', content: 'this is more content here ☕' }
+    // ])
   }, [])
 
   // const initBlogs = async () => {
