@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
+import { onSnapshot, collection } from 'firebase/firestore'
 import { UserAuth } from '../../contexts/authContext/AuthContext'
-import './blog.css'
 import BlogList from './BlogList.jsx'
 import { database } from '../../firebase'
-import { getDocs, collection } from 'firebase/firestore'
+import './blog.css'
 
 export default function Blog () {
   const [posts, setPosts] = useState([])
@@ -17,25 +17,14 @@ export default function Blog () {
   }, [posts, query])
 
   useEffect(() => {
-    // onSnapshot(collection(database, 'blogs'), (snapshot) => {
-    //   console.log(snapshot)
-    // })
-    initBlogs()
-    // // initBlogs()
-    // setPosts([
-    //   { id: 1, title: 'first ever blog', content: 'this is my content asdfasdfasdf' },
-    //   { id: 2, title: 'second ever blog', content: 'this is more content here ☕' },
-    //   { id: 3, title: 'thrid ever blog', content: 'this is more content here ☕' }
-    // ])
-  }, [])
-
-  const initBlogs = async () => {
-    const querySnapshot = await getDocs(collection(database, 'blogs'))
-
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`)
+    const unsub = onSnapshot(collection(database, 'blogs'), (snapshot) => {
+      const data = snapshot.docs.map(x => ({ ...x.data(), id: x.id }))
+      setPosts(prev => data)
+      console.log(posts)
     })
-  }
+
+    return unsub
+  }, [])
 
   return (<>
             <h1>Blog</h1>
