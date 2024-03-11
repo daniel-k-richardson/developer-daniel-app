@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types'
-
 const BlogList = ({ items }) => {
   const handleClick = (post) => {
     console.log('Clicked on item', post)

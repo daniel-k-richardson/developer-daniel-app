@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -36,9 +35,6 @@ export const AuthContextProvider = ({ children }) => {
   )
 }
 
-AuthContextProvider.propTypes = {
-  children: PropTypes.node.isRequired
-}
 export const UserAuth = () => {
   return useContext(UserContext)
 }
