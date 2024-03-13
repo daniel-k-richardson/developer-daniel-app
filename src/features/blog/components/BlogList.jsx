@@ -10,7 +10,7 @@ const BlogList = ({ items }) => {
                   <h1 className='blogTitle'>{post.title}</h1>
                   <p className='content'>{post.content.slice(0, 40) + '...'}</p>
                   <div className='blogFooter'>
-                    <p>footer scontent</p>
+                    <p>footer scontent {post.id}</p>
                   </div>
                 </div>
       ))}
