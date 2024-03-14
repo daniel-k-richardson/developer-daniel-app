@@ -8,6 +8,7 @@ import Blogs from './features/blog/Blogs'
 import Blog from './features/blog/Blog'
 import Login from './features/login/Login'
 import Header from './common/header/Header'
+import EditBlog from './features/blog/EditBlog'
 
 function App () {
   return (
@@ -23,6 +24,7 @@ function App () {
               <Route path='about' element={<About />} />
               <Route path='blogs' element={<Blogs />} />
               <Route path='blogs/:blogId' element={<Blog />} />
+              <Route path='blogs/:blogId/edit' element={<EditBlog />} />
               <Route path='login' element={<Login />} />
             </Routes>
           </div>

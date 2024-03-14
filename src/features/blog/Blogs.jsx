@@ -1,30 +1,27 @@
-import { useState, useEffect, useMemo } from 'react'
-import { onSnapshot, collection } from 'firebase/firestore'
+import { useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import useFetchBlogs from './hooks/useFetchBlogs'
 import { UserAuth } from '../../contexts/authContext/AuthContext.jsx'
 import BlogList from './components/BlogList.jsx'
-import { database } from '../../firebase.js'
 import './blog.css'
 
 export default function Blogs () {
-  const [posts, setPosts] = useState([])
+  const navigate = useNavigate()
+  const { blogs } = useFetchBlogs()
   const [query, setQuery] = useState('')
   const { user } = UserAuth()
 
   const filteredItems = useMemo(() =>
-    posts
+    blogs
       .filter(item => item.title
         .toLowerCase()
         .includes(query.toLowerCase())
-      ), [posts, query])
+      ), [blogs, query])
 
-  useEffect(() => {
-    const unsub = onSnapshot(collection(database, 'blogs'), (snapshot) => {
-      const data = snapshot.docs.map(x => ({ ...x.data(), id: x.id }))
-      setPosts(prev => data)
-    })
-
-    return unsub
-  }, [])
+  const handleOpenBlog = (blogId) => {
+    navigate(blogId)
+  }
 
   return (<>
             <h1>Blog</h1>
@@ -36,7 +33,7 @@ export default function Blogs () {
               type="search"
             />
             <div className='blogWrapper' >
-              <BlogList items={filteredItems} />
+              <BlogList items={filteredItems} handleClick={handleOpenBlog}/>
             </div>
           </>)
 }

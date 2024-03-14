@@ -1,26 +1,21 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { doc, getDoc } from 'firebase/firestore'
-import { database } from '../../firebase.js'
+import { useNavigate, useParams } from 'react-router-dom'
+import useFetchBlog from './hooks/useFetchBlog'
 
 const Blog = () => {
   const params = useParams()
-  const [blog, setBlog] = useState({})
+  const navigate = useNavigate()
+  const { blog } = useFetchBlog(params.blogId)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const docRef = doc(database, 'blogs', params.blogId)
-      const docSnap = await getDoc(docRef)
-      if (docSnap.exists()) {
-        setBlog({ ...docSnap.data(), id: docSnap.id })
-      }
-    }
-    fetchData()
-  }, [])
+  const handleEdit = () => {
+    navigate('edit')
+  }
 
   return (<>
-  {blog.id && <h1>test</h1>}
-  {blog.id}
+  <button onClick={() => handleEdit()}>Edit</button>
+  <div>
+    <h1>{blog.title}</h1>
+    <p>{blog.content}</p>
+  </div>
   </>)
 }
 
