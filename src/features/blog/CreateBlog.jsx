@@ -1,41 +1,39 @@
-import { useParams } from 'react-router-dom'
-import { doc, updateDoc } from 'firebase/firestore'
-import useFetchBlog from './hooks/useFetchBlog'
+import { useState } from 'react'
+import { collection, addDoc } from 'firebase/firestore'
 import Input from '../../common/input/Input'
 import { database } from '../../firebase'
 
-const EditBlog = () => {
-  const params = useParams()
-  const { blog, setBlog } = useFetchBlog(params.blogId)
+const CreateBlog = () => {
+  const [blog, setBlog] = useState({})
 
   const handleEdit = (event) => {
-    const update = async () => {
-      const blogRef = doc(database, 'blogs', blog.id)
-      await updateDoc(blogRef, {
-        title: blog.title,
-        content: blog.content
+    const create = async () => {
+      const docRef = await addDoc(collection(database, 'blogs'), {
+        ...blog
       })
+
+      console.log(docRef)
     }
     event.preventDefault()
-    update()
+    create()
   }
 
   const handleChange = (event) => {
     setBlog(s => ({ ...s, [event.target.name]: event.target.value }))
-    console.log()
+    console.log(blog)
   }
 
   return (<>
-    <h1>hello edit - { blog.title }</h1>
+    <h1>hello create</h1>
     <form onSubmit={ handleEdit }>
             <Input
               type='text'
-              defaultValue={ blog.title }
+              placeholder='title'
               name='title'
               onChange={ handleChange } />
             <Input
               type='textarea'
-              defaultValue={ blog.content }
+              placeholder='content'
               name='content'
               onChange={ handleChange } />
             <Input type='submit' value='Save'/>
@@ -43,4 +41,4 @@ const EditBlog = () => {
   </>)
 }
 
-export default EditBlog
+export default CreateBlog

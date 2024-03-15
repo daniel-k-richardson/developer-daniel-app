@@ -25,7 +25,7 @@ export default function Blogs () {
 
   return (<>
             <h1>Blog</h1>
-            { user ? (<button>Create new blog</button>) : null }
+            { user ? (<button onClick={() => navigate('create') }>Create new blog</button>) : null }
             <input
               placeholder='Seach...'
               value={query}
